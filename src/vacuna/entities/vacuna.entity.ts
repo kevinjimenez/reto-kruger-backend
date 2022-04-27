@@ -1,5 +1,6 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { PrincipalEntity } from '../../common/principal.entity';
+import { EmpleadoEntity } from '../../empleado/entities/empleado.entity';
 
 @Entity('vacuna')
 export class VacunaEntity extends PrincipalEntity {
@@ -20,4 +21,9 @@ export class VacunaEntity extends PrincipalEntity {
     name: 'numero_dosis',
   })
   numeroDosis: number;
+
+  @ManyToOne(() => EmpleadoEntity, (empleado) => empleado.vacunas)
+  @JoinColumn({ name: 'id_empleado' })
+  empleado: EmpleadoEntity | number;
 }
+

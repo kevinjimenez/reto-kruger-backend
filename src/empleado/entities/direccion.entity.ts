@@ -1,5 +1,6 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { PrincipalEntity } from '../../common/principal.entity';
+import { EmpleadoEntity } from './empleado.entity';
 
 @Entity('direccion')
 export class DireccionEntity extends PrincipalEntity {
@@ -31,4 +32,8 @@ export class DireccionEntity extends PrincipalEntity {
     nullable: true,
   })
   calleSecundaria: string;
+
+  @ManyToOne(() => EmpleadoEntity, (empleado) => empleado.direcciones)
+  @JoinColumn({ name: 'id_empleado' })
+  empleado: EmpleadoEntity | number;
 }

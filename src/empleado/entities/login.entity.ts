@@ -1,5 +1,6 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, OneToOne } from 'typeorm';
 import { PrincipalEntity } from '../../common/principal.entity';
+import { EmpleadoEntity } from './empleado.entity';
 
 @Entity('login')
 export class LoginEntity extends PrincipalEntity {
@@ -17,4 +18,6 @@ export class LoginEntity extends PrincipalEntity {
     length: 16,
   })
   password: string;
+  @OneToOne(() => EmpleadoEntity, (empleado) => empleado.login)
+  empleado: EmpleadoEntity | number;
 }
