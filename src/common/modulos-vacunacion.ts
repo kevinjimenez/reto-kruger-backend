@@ -5,7 +5,7 @@ import { AuthModule } from '../auth/auth.module';
 
 export const MODULOS_VACUNACION = [
   EmpleadoModule,
-  // VacunaModule,
+  VacunaModule,
   DatabaseModule,
-  // AuthModule
+  AuthModule,
 ];
