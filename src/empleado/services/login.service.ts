@@ -25,4 +25,13 @@ export class LoginService extends PrincipalService<
     loginNuevo.password = hashPassword;
     return await this._loginRepository.save(loginNuevo);
   }
+
+  async findByUsuario(usuario: string) {
+    return await this._loginRepository.findOne({
+      relations: ['empleado'],
+      where: {
+        usuario,
+      },
+    });
+  }
 }

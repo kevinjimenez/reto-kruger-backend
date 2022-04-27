@@ -1,7 +1,7 @@
 import {
   IsBoolean,
   IsDateString,
-  IsEmail,
+  IsEmail, IsIn,
   IsNotEmpty,
   IsNumberString,
   IsOptional,
@@ -35,6 +35,10 @@ export class CreateEmpleadoDto {
 
   @IsNotEmpty()
   login: LoginEntity | number;
+
+  @IsOptional()
+  @IsIn(['usuario', 'admin'])
+  rol?: 'usuario' | 'admin';
 }
 
 export class UpdateEmpleadoDto extends PartialType(CreateEmpleadoDto) {

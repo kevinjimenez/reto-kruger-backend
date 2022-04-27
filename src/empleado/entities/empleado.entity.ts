@@ -58,6 +58,13 @@ export class EmpleadoEntity extends PrincipalEntity {
   })
   vacunado?: true | false;
 
+  @Column({
+    type: 'varchar',
+    name: 'rol',
+    default: 'usuario',
+  })
+  rol?: 'usuario' | 'admin';
+
   @OneToMany(() => DireccionEntity, (direcciones) => direcciones.empleado)
   direcciones?: DireccionEntity[];
 
