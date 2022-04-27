@@ -15,9 +15,9 @@ export class LoginEntity extends PrincipalEntity {
     type: 'varchar',
     name: 'password',
     unique: true,
-    length: 16,
   })
   password: string;
+
   @OneToOne(() => EmpleadoEntity, (empleado) => empleado.login)
-  empleado: EmpleadoEntity | number;
+  empleado?: EmpleadoEntity | number;
 }

@@ -26,4 +26,3 @@ export class VacunaEntity extends PrincipalEntity {
   @JoinColumn({ name: 'id_empleado' })
   empleado: EmpleadoEntity | number;
 }
-

@@ -31,7 +31,7 @@ export class DireccionEntity extends PrincipalEntity {
     length: 60,
     nullable: true,
   })
-  calleSecundaria: string;
+  calleSecundaria?: string;
 
   @ManyToOne(() => EmpleadoEntity, (empleado) => empleado.direcciones)
   @JoinColumn({ name: 'id_empleado' })

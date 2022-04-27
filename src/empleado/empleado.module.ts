@@ -5,11 +5,13 @@ import { LoginService } from './services/login.service';
 import { DireccionService } from './services/direccion.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ENTIDADES_EMPLEADO } from './common/entidades-empleado';
+import { DireccionController } from './controllers/direccion.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([...ENTIDADES_EMPLEADO], 'default')],
-  controllers: [EmpleadoController],
+  controllers: [EmpleadoController, DireccionController],
   providers: [EmpleadoService, LoginService, DireccionService],
-  exports: [EmpleadoService, LoginService, DireccionService],
+  exports: [LoginService],
 })
-export class EmpleadoModule {}
+export class EmpleadoModule {
+}

@@ -3,9 +3,16 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 
 @Injectable()
 export class PrincipalService<Entidad, CreateDto, UpdateDto> {
-  constructor(private _repository: Repository<Entidad>) {}
+  constructor(private _repository: Repository<Entidad>) {
+  }
 
   async createOne(payload: CreateDto): Promise<Entidad> {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    return await this._repository.save(payload);
+  }
+
+  async createMany(payload: CreateDto[]): Promise<Entidad[]> {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     return await this._repository.save(payload);

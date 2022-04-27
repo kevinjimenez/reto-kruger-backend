@@ -4,6 +4,7 @@ import { LoginEntity } from '../entities/login.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateLoginDto, UpdateLoginDto } from '../dtos/login.dto';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class LoginService extends PrincipalService<
@@ -16,5 +17,12 @@ export class LoginService extends PrincipalService<
     private readonly _loginRepository: Repository<LoginEntity>,
   ) {
     super(_loginRepository);
+  }
+
+  async createOne(payload: CreateLoginDto): Promise<LoginEntity> {
+    const loginNuevo = this._loginRepository.create(payload);
+    const hashPassword = await bcrypt.hash(loginNuevo.password, 10);
+    loginNuevo.password = hashPassword;
+    return await this._loginRepository.save(loginNuevo);
   }
 }

@@ -41,27 +41,28 @@ export class EmpleadoEntity extends PrincipalEntity {
     name: 'fecha_nacimiento',
     nullable: true,
   })
-  fechaNacimiento: string;
+  fechaNacimiento?: string;
 
   @Column({
     type: 'varchar',
     name: 'telefono_movil',
+    length: 10,
     nullable: true,
   })
-  telefonoMovil: string;
+  telefonoMovil?: string;
 
   @Column({
     type: 'boolean',
     name: 'vacunado',
     nullable: true,
   })
-  vacunado: string;
+  vacunado?: true | false;
 
   @OneToMany(() => DireccionEntity, (direcciones) => direcciones.empleado)
-  direcciones: DireccionEntity[];
+  direcciones?: DireccionEntity[];
 
   @OneToMany(() => VacunaEntity, (vacunas) => vacunas.empleado)
-  vacunas: VacunaEntity[];
+  vacunas?: VacunaEntity[];
 
   @OneToOne(() => LoginEntity, (login) => login.empleado)
   @JoinColumn({ name: 'id_login' })

@@ -5,7 +5,6 @@ import { ConfigModule } from '@nestjs/config';
 import { Environments } from './environments/environments';
 import { MODULOS_VACUNACION } from './common/modulos-vacunacion';
 
-// AuthModule, DatabaseModule, VacunaModule, EmpleadoModule
 @Module({
   imports: [
     ConfigModule.forRoot(Environments.opcionesConfigModule),
