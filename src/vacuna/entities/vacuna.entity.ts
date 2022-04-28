@@ -22,7 +22,9 @@ export class VacunaEntity extends PrincipalEntity {
   })
   numeroDosis: number;
 
-  @ManyToOne(() => EmpleadoEntity, (empleado) => empleado.vacunas)
+  @ManyToOne(() => EmpleadoEntity, (empleado) => empleado.vacunas, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'id_empleado' })
   empleado: EmpleadoEntity | number;
 }

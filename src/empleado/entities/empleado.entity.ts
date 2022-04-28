@@ -71,7 +71,10 @@ export class EmpleadoEntity extends PrincipalEntity {
   @OneToMany(() => VacunaEntity, (vacunas) => vacunas.empleado)
   vacunas?: VacunaEntity[];
 
-  @OneToOne(() => LoginEntity, (login) => login.empleado)
+  @OneToOne(() => LoginEntity, (login) => login.empleado, {
+    nullable: true,
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'id_login' })
-  login: LoginEntity | number;
+  login?: LoginEntity | number;
 }

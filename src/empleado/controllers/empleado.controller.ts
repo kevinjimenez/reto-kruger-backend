@@ -7,6 +7,7 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import { EmpleadoService } from '../services/empleado.service';
 import { CreateEmpleadoDto, UpdateEmpleadoDto } from '../dtos/empleado.dto';
@@ -16,13 +17,18 @@ export class EmpleadoController {
   constructor(private readonly _empleadoService: EmpleadoService) {}
 
   @Get()
-  obtenerEmpleados() {
-    return this._empleadoService.findAll();
+  obtenerEmpleados(@Query() criterio: any) {
+    return this._empleadoService.findAll(criterio);
   }
 
   @Post()
   crearEmpleado(@Body() payload: CreateEmpleadoDto) {
     return this._empleadoService.createOne(payload);
+  }
+
+  @Get(':id')
+  obtenerEmpleadoPorId(@Param('id', ParseIntPipe) id: number) {
+    return this._empleadoService.findById(id);
   }
 
   @Put(':id')
@@ -34,7 +40,7 @@ export class EmpleadoController {
   }
 
   @Delete(':id')
-  eliminarEmpleado() {
-    return this._empleadoService.findAll();
+  eliminarEmpleado(@Param('id', ParseIntPipe) id: number) {
+    return this._empleadoService.deleteOne(id);
   }
 }

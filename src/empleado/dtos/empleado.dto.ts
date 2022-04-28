@@ -1,7 +1,8 @@
 import {
   IsBoolean,
   IsDateString,
-  IsEmail, IsIn,
+  IsEmail, IsEmpty,
+  IsIn,
   IsNotEmpty,
   IsNumberString,
   IsOptional,
@@ -33,25 +34,25 @@ export class CreateEmpleadoDto {
   @Length(3, 30)
   correoElectronico: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   login: LoginEntity | number;
 
   @IsOptional()
   @IsIn(['usuario', 'admin'])
   rol?: 'usuario' | 'admin';
-}
 
-export class UpdateEmpleadoDto extends PartialType(CreateEmpleadoDto) {
   @IsOptional()
   @IsDateString()
   fechaNacimiento?: string;
 
   @IsOptional()
   @IsString()
-  @Length(7, 10)
+  // @Length(7, 10)
   telefonoMovil?: string;
 
   @IsOptional()
   @IsBoolean()
   vacunado?: true | false;
 }
+
+export class UpdateEmpleadoDto extends PartialType(CreateEmpleadoDto) {}

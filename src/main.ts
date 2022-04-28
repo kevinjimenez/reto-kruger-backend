@@ -4,7 +4,7 @@ import { ValidationPipe } from '@nestjs/common';
 
 const validacionDtos = new ValidationPipe({
   whitelist: true,
-  forbidNonWhitelisted: true,
+  // forbidNonWhitelisted: true,
   // disableErrorMessages: true,
   transformOptions: {
     enableImplicitConversion: true,

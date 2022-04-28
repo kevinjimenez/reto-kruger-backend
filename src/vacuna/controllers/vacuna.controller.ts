@@ -5,7 +5,8 @@ import { VacunaEntity } from '../entities/vacuna.entity';
 
 @Controller('vacuna')
 export class VacunaController {
-  constructor(private readonly _vacunaService: VacunaService) {}
+  constructor(private readonly _vacunaService: VacunaService) {
+  }
 
   @Post()
   crearDireccion(@Body() payload: CreateVacunaDto[]) {
@@ -16,8 +17,18 @@ export class VacunaController {
   async actualizarDireccion(@Body() payload: UpdateVacunaDto[]) {
     let vacunasEditadas: VacunaEntity[] = [];
     for (const vacuna of payload) {
+      let vacunaEditada;
       const { id } = vacuna;
-      const vacunaEditada = await this._vacunaService.updateById(id, vacuna);
+      if (id) {
+        vacunaEditada = await this._vacunaService.updateById(
+          id,
+          vacuna,
+        );
+      } else {
+        vacunaEditada = await this._vacunaService.createOne(
+          vacuna as CreateVacunaDto,
+        );
+      }
       vacunasEditadas = [vacunaEditada, ...vacunasEditadas];
     }
     return vacunasEditadas;

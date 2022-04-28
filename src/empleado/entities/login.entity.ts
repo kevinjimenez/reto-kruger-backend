@@ -18,6 +18,8 @@ export class LoginEntity extends PrincipalEntity {
   })
   password: string;
 
-  @OneToOne(() => EmpleadoEntity, (empleado) => empleado.login)
+  @OneToOne(() => EmpleadoEntity, (empleado) => empleado.login, {
+    onDelete: 'CASCADE',
+  })
   empleado?: EmpleadoEntity | number;
 }

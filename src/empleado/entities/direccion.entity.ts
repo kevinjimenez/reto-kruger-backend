@@ -33,7 +33,9 @@ export class DireccionEntity extends PrincipalEntity {
   })
   calleSecundaria?: string;
 
-  @ManyToOne(() => EmpleadoEntity, (empleado) => empleado.direcciones)
+  @ManyToOne(() => EmpleadoEntity, (empleado) => empleado.direcciones, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'id_empleado' })
   empleado: EmpleadoEntity | number;
 }
