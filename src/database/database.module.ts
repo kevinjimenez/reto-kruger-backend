@@ -23,6 +23,9 @@ import { ENTIDADES_VACUNACION } from '../common/entidades-vacunacion';
           database: dbName,
           synchronize: false,
           entities: [...ENTIDADES_VACUNACION],
+          ssl: {
+            rejectUnauthorized: false,
+          },
           // autoLoadEntities: true,
         };
       },
